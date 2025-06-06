@@ -1,0 +1,19 @@
+.product-card
+{
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    /*align-items: stretch;*/
+    height: 100%;
+}
+
+.card-img-top
+{
+    height: 40%;
+    width: auto;
+    object-fit: contain;
+}
+
+/*.card*/
+/*{*/
+/*    flex: 1 0;*/
+/*}*/
