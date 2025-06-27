@@ -1,0 +1,38 @@
+html
+{
+    background: url(../media/style/background.jpg) no-repeat center;
+    background-size: cover;
+}
+
+.index
+{
+    background: url(/assets/media/style/background.jpg) no-repeat center;
+    background-size: cover;
+}
+
+.transparentBack
+{
+    background: rgba(211, 211, 211, 0.4);
+
+}
+
+.sellerProdCard
+{
+    background: rgba(211, 211, 211, 0.8);
+}
+
+.roundedBorder
+{
+    border-radius: 0.5rem;
+}
+
+.prodEditLabel
+{
+    background-color: white;
+    border-radius: 0.5rem;
+    height: fit-content;
+}
+
+
+
+

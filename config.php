@@ -13,5 +13,7 @@ define( 'ROOT_PATH',str_replace("\\","/",__DIR__));
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script
 
 <link href="/assets/css/navbar.css" rel="stylesheet"/>
+<link href="/assets/css/style.css" rel="stylesheet"/>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

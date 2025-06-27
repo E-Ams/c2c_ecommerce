@@ -17,12 +17,6 @@
                         Home
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
             </ul>
             <form class="d-inline-flex mb-1 mt-1">
                 <label id="searchBox">
@@ -36,7 +30,6 @@
             </form>
 
             <?php
-
             if(isset($_SESSION['isLoggedIn']) && !$_SESSION['isLoggedIn'])
             {?>
                     <button name="loginBtn" class="btn btn-success" data-bs-toggle="modal"
@@ -47,22 +40,30 @@
             <?php
             }
             else
-            {?>
+            {
+                if (true)
+                {?>
+                    <button class="btn btn-secondary me-2" data-bs-toggle="modal"
+                            data-bs-target="#addProduct">
+                        <i class="fa-solid fa-plus"></i>
+                        Add Product
+                    </button>
+
+                <?php }
+
+                ?>
                <a class="btn btn-secondary" href="dashboard.php" role="button">
                    <i class="fa-solid fa-user"></i>
-                   Account
+                   Settings
                </a>
 
-                <button name="loginBtn" class="btn btn-success ms-2"  data-bs-toggle="modal"
-                        data-bs-target="#">
+                <a href="../security/logout.php" class="btn btn-danger ms-2" role="button">
                     <i class="fa-solid fa-right-from-bracket"></i>
-                    Logout
-                </button>
+                Logout
+                </a>
             <?php
             }
             ?>
-
-
 
         </div>
     </div>

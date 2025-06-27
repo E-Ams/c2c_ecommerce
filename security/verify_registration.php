@@ -3,7 +3,6 @@
 include __DIR__ ."/../config.php";
 
 $email = $_POST['_email'];
-//$username = $_POST['_regUser'];
 $name = $_POST['_name'];
 $surname = $_POST['_surname'];
 $admin = 0;
@@ -20,44 +19,46 @@ if( isset($_POST['_isSeller']))
 
 if ( isset( $_POST['_btnRegister'] ) )
 {
-    $name = validate($name);
-//    $username = validate($username);
-    $surname = validate($surname);
-    $email = validate($email);
-    $pass = validate($pass);
-    $confirm_Pass = validate($confirm_Pass);
 
-    $conn = connectDB();
-
-//    $filename = $_FILES['profileImage']['name'];
-//    $tempname = $_FILES['profileImage']['tmp_name'];
-//    $ext = pathinfo($filename, PATHINFO_EXTENSION);
-//    $dir = "../images/profile/" . $username . "." . $ext;
-
-    if (!empty($name) && !empty($username) && !empty($email)
-        && !empty($pass) && !empty($confirm_Pass))
+    if ( !empty( $email ) && !empty( $name ) && !empty($surname) && !empty( $pass ) && !empty( $confirm_Pass ) )
     {
-        $queryEmail = "SELECT * FROM USERS WHERE email = '$email'";
+        $name = validate($name);
+//    $username = validate($username);
+        $surname = validate($surname);
+        $email = validate($email);
+        $pass = validate($pass);
+        $confirm_Pass = validate($confirm_Pass);
+
+        $hashed = password_hash($pass, PASSWORD_DEFAULT, ['cost' => 15]);
+
+        $conn = connectDB();
+
+        $queryEmail = "SELECT * FROM users WHERE email = '$email'";
         $result = mysqli_query($conn, $queryEmail);
 
         if (mysqli_num_rows($result) > 0)
         {
-            //echo '<script>setTimeout(\"location.href = ../index.php;\", 1500 );</script>';
             header("refresh:0.5; url=../index.php");
             echo '<script>alert("Email already in use\nClick OK to return" )</script>';
+            exit();
         }
 
-        if ($pass != $confirm_Pass)
+        else if ($pass != $confirm_Pass)
         {
             header("refresh:0.5; url=../index.php");
             echo '<script>alert("Passwords must match\nClick OK to return" )</script>';
+            exit();
         }
 
-        addUser( $conn,  $email, $name, $surname, $isSeller, $pass );
+        else if (addUser($email, $name, $surname, $isSeller, $hashed))
+        {
+            header("refresh:0.5; url=../index.php");
+            echo '<script>alert( "User registered successfully\nClick OK to log in");</script>';
+        }
     }
 }
 
-function validate( $data )
+function validate( $data ): string
 {
     $data = trim( $data );
     $data = stripslashes( $data );

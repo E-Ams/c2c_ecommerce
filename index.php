@@ -6,14 +6,15 @@ makeSession();
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html class="index" lang="en">
 <head>
     <title>C2C E-Commerce</title>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Latest compiled and minified CSS -->
     <link href="./assets/css/login.css" rel="stylesheet"/>
+    <link href="./assets/css/style.css" rel="stylesheet"/>
+
 
     <script src="https://kit.fontawesome.com/cfb4292f71.js" crossorigin="anonymous"></script>
 
@@ -26,7 +27,6 @@ makeSession();
 
 <!-- Registration Modal -->
 <?php include_once './security/register.php' ?>
-
 
 <!-- Load Home Feed -->
 <?php include 'display/home.php' ?>

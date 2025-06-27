@@ -10,10 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Latest compiled and minified CSS -->
 </head>
-<body>
-
-<?php
-//include 'navbar.php';?>
+<body style="background-color:transparent">
 
 <br/>
 <br/>
@@ -22,6 +19,8 @@
 
 <?php
 include_once 'feed.php';
+
+include_once 'product_add_form.php'
 ?>
 
 </body>

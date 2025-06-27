@@ -5,14 +5,15 @@
 <div class="products-container">
     <?php
 
-    $conn = connectDB();
+    if ( session_status() !== PHP_SESSION_ACTIVE )
+    {
+        session_start();
+    }
 
-    $sql = "SELECT * FROM products";
-    $result = $conn->query($sql);
+    $conn = connectDB();
+    $result = getAllProduct();
 
     $count = 0;
-
-
     if ($result->num_rows > 0)
     {
         while ($product = $result->fetch_assoc())
@@ -23,12 +24,12 @@
 
             $count++;
 
-            echo("<div class='col col-md-3'>");
+            echo("<div class='col col-lg-2 col-md-3 col-sm-4 col-xs-6 '>");
 
             // Include product template for each product
             include 'product_item.php';
 
-            if ($count == 4)
+            if ($count == 6)
             {
                 echo("</div>");
                 $count = 0;

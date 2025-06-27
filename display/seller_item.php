@@ -1,11 +1,10 @@
-<script type="text/javascript" src="../assets/js/user_settings.js"></script>
+<script type="text/javascript" src="../assets/js/ajax.js"></script>
 
-
-<div class="card product-card d-flex" style="width: auto;">
+<div class="card product-card d-flex sellerProdCard" style="width: auto;">
     <img class="card-img-top" src="<?php echo htmlspecialchars("/assets/media/products/".$product['image_url']); ?>"
          alt="<?php echo htmlspecialchars($product['name']); ?>"
          style="max-height: 80%; width: auto;">
-    <div class="card-body">
+    <div class="card-body roundedBorder">
         <h4 class="card-title"><?php echo $product['name']; ?></h4>
         <h5 class="card-text"><?php echo number_format($product['price'], 2) ?></h5>
         <p class="card-text"><?php echo htmlspecialchars(($product['description'])) ?></p>

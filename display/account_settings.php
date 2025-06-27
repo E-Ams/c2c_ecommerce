@@ -1,15 +1,12 @@
 <?php
 include_once "../config.php";
-include "navbar.php"
+session_start();
 ?>
 
-<!--<br/>-->
-<!--<br/>-->
-<!--<br/>-->
+<body>
+<link href="../assets/css/dashboard.css" rel="stylesheet"/>
 
-<?php session_start(); ?>
-
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-10">
             <div class="card shadow">
@@ -24,8 +21,7 @@ include "navbar.php"
                         </div>
                     <?php endif; ?>
 
-                    <form method="POST" enctype="multipart/form-data">
-
+                    <form action="../database/account_update.php" method="post">
                         <h5>User Information</h5>
                         <!-- Basic Info -->
                         <div class="row mb-3">
@@ -103,9 +99,11 @@ include "navbar.php"
                         </div>
 
                         <!-- Submit Button -->
-                        <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
-                            <a href="profile.php" class="btn btn-outline-secondary">Cancel</a>
+                        <div class="row mb-3">
+                            <div class="col-sm-12 d-flex justify-content-center">
+                                <button name="_btnUpdateUser" id="_btnUpdateUser" type="submit"
+                                        class="btn btn-primary">Save Changes</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -113,21 +111,4 @@ include "navbar.php"
         </div>
     </div>
 </div>
-
-<!--<script>-->
-<!--    function previewImage(input, previewId) {-->
-<!--        const preview = document.getElementById(previewId);-->
-<!--        const file = input.files[0];-->
-<!--        const reader = new FileReader();-->
-<!---->
-<!--        reader.onloadend = function() {-->
-<!--            preview.src = reader.result;-->
-<!--        }-->
-<!---->
-<!--        if (file) {-->
-<!--            reader.readAsDataURL(file);-->
-<!--        } else {-->
-<!--            preview.src = "";-->
-<!--        }-->
-<!--    }-->
-<!--</script>-->
+</body>

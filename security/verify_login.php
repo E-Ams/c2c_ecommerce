@@ -4,9 +4,6 @@ include __DIR__ ."/../config.php";
 $userEmail = $_POST['_email'];
 $userPass = $_POST['_password'];
 
-//$userEmail = "test@test.com";
-//$userPass = "test1234";
-
 if ( isset( $userEmail) && isset( $userPass ) )
 {
     $userEmail = validate( $userEmail );
@@ -16,7 +13,9 @@ if ( isset( $userEmail) && isset( $userPass ) )
     {
         $conn = connectDB();
 
-        $query = "SELECT * FROM USERS WHERE email = '$userEmail' && password = '$userPass'";
+        $hashed = password_hash( $userPass, PASSWORD_DEFAULT, ['cost' => 15] );
+
+        $query = "SELECT * FROM users WHERE email = '$userEmail'";
         $result = mysqli_query( $conn, $query );
 
         $temp = false;
@@ -25,21 +24,27 @@ if ( isset( $userEmail) && isset( $userPass ) )
         {
             session_start();
             $user_data = mysqli_fetch_assoc($result);
-            $_SESSION['valid'] = true;
-            $_SESSION['timeout'] = time();
-            $_SESSION['userID'] = $user_data['userID'];
-            $_SESSION['email'] = $userEmail;
-            $_SESSION['name'] = $user_data['name'];
-            $_SESSION['surname'] = $user_data['surname'];
-            $_SESSION['isSeller'] = $user_data['isSeller'];
-            $_SESSION['isAdmin'] = $user_data['isAdmin'];
 
-            if ($user_data['isAdmin'] == 1)
-                $_SESSION['admin'] = "Yes";
-            else
-                $_SESSION['admin'] = "No";
+            $isValid = password_verify( $userPass, $user_data['password'] );
 
-            $temp = true;
+            if( $isValid )
+            {
+                $_SESSION['valid'] = true;
+                $_SESSION['timeout'] = time();
+                $_SESSION['userID'] = $user_data['userID'];
+                $_SESSION['email'] = $userEmail;
+                $_SESSION['name'] = $user_data['name'];
+                $_SESSION['surname'] = $user_data['surname'];
+                $_SESSION['isSeller'] = $user_data['isSeller'];
+                $_SESSION['isAdmin'] = $user_data['isAdmin'];
+
+                if ($user_data['isAdmin'] == 1)
+                    $_SESSION['admin'] = "Yes";
+                else
+                    $_SESSION['admin'] = "No";
+
+                $temp = true;
+            }
         }
 
         if( $temp )
@@ -49,7 +54,7 @@ if ( isset( $userEmail) && isset( $userPass ) )
             $GLOBALS['loginStatus'] = true;
 
             //TODO: Add home page
-            header( "refresh:1.5; url=../display/home.php" );
+            header( "refresh:1.0; url=../display/home.php" );
         }
         else
         {
@@ -64,14 +69,10 @@ if ( isset( $userEmail) && isset( $userPass ) )
 else
     echo "failed";
 
-function validate( $data )
+function validate( $data ): string
 {
     $data = trim( $data );
     $data = stripslashes( $data );
     $data = htmlspecialchars( $data );
     return $data;
 }
-
-//checkLogin( $conn );
-
-?>

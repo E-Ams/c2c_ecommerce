@@ -4,6 +4,16 @@
     /*flex-wrap: wrap;*/
     /*align-items: stretch;*/
     height: 100%;
+    /*background-color: aliceblue;*/
+}
+
+.product-card > .card-body
+{
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+
 }
 
 .card-img-top
@@ -11,6 +21,12 @@
     height: 40%;
     width: auto;
     object-fit: contain;
+    padding: 0.5rem;
+}
+
+.product-card:hover
+{
+    transform: scale(1.05);
 }
 
 /*.card*/

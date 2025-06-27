@@ -3,7 +3,10 @@
 <link href="/assets/css/productCard.css" rel="stylesheet"/>
 
 
-<div class="container mt-5">
+<body>
+<link href="../assets/css/dashboard.css" rel="stylesheet"/>
+
+<div class="container mt-5 ">
     <div class="row justify-content-center">
         <div class="col-lg-12 col-md-10 col-sm-6 col-xs-1">
             <div class="products-container">
@@ -27,7 +30,7 @@
 
                         $count++;
 
-                        echo("<div class='col col-md-3'>");
+                        echo("<div class='col col-md-5 col-sm-12 mb-1'>");
 
                         // Include product template for each product
                         include 'seller_item.php';
@@ -52,4 +55,5 @@
         </div>
     </div>
 </div>
+</body>
 
